@@ -7,22 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using NUnit.Framework;
+
 
 namespace Project1
 {
+   
+
+    [TestFixture]
     public partial class Form1 : Form
     {
+       
         public Form1()
         {
             InitializeComponent();
         }
-
+        
         /// <summary>
         /// open an xml file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void openXml_Click(object sender, EventArgs e)
+        [Test]
+        public void openXml_Click(object sender, EventArgs e)
         {
             XmlDocument myDocument = new XmlDocument();
             try
@@ -85,7 +92,8 @@ namespace Project1
         /// insert text in new line
         /// </summary>
         /// <param name="theText"></param>
-        private void AddLine(string theText)
+        [Test]
+        public void AddLine(string theText)
         {
             this.textOutput.Text = this.textOutput.Text + Environment.NewLine + theText.ToString();
         }
@@ -95,7 +103,8 @@ namespace Project1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveNewFile_Click(object sender, EventArgs e)
+        [Test]
+        public void saveNewFile_Click(object sender, EventArgs e)
         {
              // This shows you how you can create your own order. 
             // Note that, while this is a lot easier than doing it 'from scratch' in 
@@ -154,12 +163,22 @@ namespace Project1
          /// <param name="a"></param>
          /// <param name="b"></param>
          /// <returns></returns>
-        int TestFunction(int a, int b)
+        [Test]
+        public int TestFunction(int a, int b)
         {
-            return a + b;
+            int c = a + b;
+            Assert.AreEqual(10, c);
+
+            return c;
         }
 
-        private void testButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// test function execute
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        [Test]
+        public void testButton_Click(object sender, EventArgs e)
         {
             if (A.Text != "" && B.Text != "")
             {
